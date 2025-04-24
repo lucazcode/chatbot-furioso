@@ -1,7 +1,7 @@
 import streamlit as st
 
 # Função que executa a aplicação
-def app():
+def main():
     st.header("Chatbot FURIOSO", divider = True)
     st.write("### Tire suas dúvidas com o Chatbot da FURIA!")
 
@@ -30,4 +30,5 @@ def app():
         else:
             st.session_state["messages"] = []
 
-app()
+if __name__ == "__main__":
+    main()
