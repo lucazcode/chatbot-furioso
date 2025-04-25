@@ -1,9 +1,9 @@
 from scraper import get_page
-from extract_player import extract_players
+from extract_players import extract_players
 from extract_coach import extract_coach
 
 
-def extract_data(my_url):
+def extract_team(my_url):
 
     # Obtém o conteúdo da página
     page_content = get_page(my_url)
@@ -21,5 +21,5 @@ def extract_data(my_url):
     return {"players": players, "coach": coach}
 
 # Teste
-furia_data = extract_data("https://www.hltv.org/team/8297/furia")
+furia_data = extract_team("https://www.hltv.org/team/8297/furia")
 print(f"Jogadores da FURIA: {furia_data["players"]}\nCoach da FURIA: {furia_data["coach"]}")
