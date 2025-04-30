@@ -1,6 +1,6 @@
 from flux_control import handle_input
 
-# Testes misturados com as perguntas do primeiro e segundo teste
+# Testes
 test_questions = [
     "",
 
