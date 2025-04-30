@@ -7,6 +7,11 @@ def extract_next_match_url(my_url):
     page_content = get_page(my_url)
     soup = BeautifulSoup(page_content, "html.parser")
 
+    # Verifica se não há partidas futuras
+    empty_state = soup.select_one("div.empty-state span")
+    if empty_state and "No upcoming matches" in empty_state.get_text():
+        return None
+
     # Encontra o link para a próxima partida
     match_link_tag = soup.select_one("td.matchpage-button-cell a.matchpage-button")
     if match_link_tag:
@@ -16,6 +21,9 @@ def extract_next_match_url(my_url):
 
 # Função que extrai o formato da partida da página
 def extract_next_match_format_and_stage(match_url):
+    if not match_url:
+        return None
+
     # Extrai os dados da página
     match_page_content = get_page(match_url)
     match_soup = BeautifulSoup(match_page_content, "html.parser")
@@ -31,8 +39,3 @@ def extract_next_match_format_and_stage(match_url):
             "stage": match_stage.strip()
         }
     return None
-
-# Teste
-next_match_url = extract_next_match_url("https://www.hltv.org/team/5973/liquid#tab-matchesBox")
-next_match_format_and_stage = extract_next_match_format_and_stage(next_match_url)
-print(next_match_format_and_stage)

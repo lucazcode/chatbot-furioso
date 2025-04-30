@@ -1,7 +1,11 @@
 from bs4 import BeautifulSoup
+from scraper import get_page
+
 
 # Extrai o nome + nick dos jogadores da página
-def extract_players(page_content):
+def extract_players(my_url):
+    # Obtém o conteúdo da página
+    page_content = get_page(my_url)
     soup = BeautifulSoup(page_content, "html.parser")
 
     # Define um escopo maior para a extração

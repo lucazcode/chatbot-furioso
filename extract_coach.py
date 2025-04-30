@@ -1,7 +1,12 @@
 from bs4 import BeautifulSoup
 
+from scraper import get_page
+
+
 # Extrai o nome + nick do coach da página
-def extract_coach(page_content):
+def extract_coach(my_url):
+    # Obtém o conteúdo da página
+    page_content = get_page(my_url)
     soup = BeautifulSoup(page_content, "html.parser")
     coach_tag = soup.select_one("a.right")
 

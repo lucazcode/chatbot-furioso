@@ -16,6 +16,3 @@ def extract_players_links(my_url):
         return player_links
     else:
         return None
-
-team_player_links = extract_players_links("https://www.hltv.org/team/8297/furia")
-print(team_player_links)

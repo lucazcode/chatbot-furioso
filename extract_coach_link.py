@@ -15,7 +15,3 @@ def extract_coach_link(my_url):
     coach_link = "https://www.hltv.org" + coach_tag["href"]
 
     return coach_link
-
-# Teste
-team_coach_link = extract_coach_link("https://www.hltv.org/team/8297/furia")
-print(team_coach_link)

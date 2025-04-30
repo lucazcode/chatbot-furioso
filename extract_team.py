@@ -5,21 +5,14 @@ from extract_coach import extract_coach
 
 def extract_team(my_url):
 
-    # Obtém o conteúdo da página
-    page_content = get_page(my_url)
-
     # Extrai os jogadores
-    players = extract_players(page_content)
+    players = extract_players(my_url)
     if not players:
-        players = "Informação Indisponível."
+        return None
 
     # Extrai o coach
-    coach = extract_coach(page_content)
+    coach = extract_coach(my_url)
     if not coach:
-        coach = "Informação indisponível."
+        return None
 
     return {"players": players, "coach": coach}
-
-# Teste
-furia_data = extract_team("https://www.hltv.org/team/8297/furia")
-print(f"Jogadores da FURIA: {furia_data["players"]}\nCoach da FURIA: {furia_data["coach"]}")

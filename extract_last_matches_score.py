@@ -58,8 +58,3 @@ def extract_last_matches_score(my_url):
         last_matches.append(match_data)
 
     return last_matches
-
-
-# Exemplo de uso
-last_matches_info = extract_last_matches_score("https://www.hltv.org/team/5973/liquid")
-print(last_matches_info)
