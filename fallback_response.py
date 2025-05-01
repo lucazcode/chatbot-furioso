@@ -38,7 +38,7 @@ keywords_responses = {
         "roster": "O roster da FURIA é só craque! Estamos prontos pra vencer tudo!",
         "substituicao": "Substituição na FURIA? A equipe é forte de qualquer jeito!",
         "novato": "Os novatos da FURIA estão arrasando! O futuro do time é promissor!",
-        "coach": "O coach da FURIA, Guerri, sabe exatamente o que fazer! Vitória atrás de vitória!",
+        "coach": "O coach da FURIA sabe exatamente o que fazer! Vitória atrás de vitória!",
         "tecnico": "O técnico da FURIA é uma lenda, sempre preparado para a vitória!",
         "treinador": "Com esse treinador, a FURIA nunca para de crescer! Estamos dominando!"
     },
@@ -126,7 +126,7 @@ keywords_responses = {
         "guerri": "Guerri é o cérebro por trás da FURIA! Ele sabe como fazer a equipe vencer!"
     },
     'saudacoes': {
-        "furioso": "Opa! tranquilo? meu nome é FURIOSO e estou aqui pra te auxiliar a ficar ligadão nas notícias da FURIA e do CS! Do que precisa?",
+        "furioso": "Eu mesmo! estou aqui pra te auxiliar a ficar ligadão nas notícias da FURIA e do CS! Do que precisa?",
         "ola": "Olá! Pronto pra mais uma batalha com a FURIA?",
         "saudacoes": "Saudações! O rugido da torcida é eterno!",
         "cumprimentos": "Cumprimentos! Aqui é raça e dedicação!",
@@ -200,6 +200,8 @@ contextual_responses = {
         ("fala", "chefe"): "Fala chefe! É sempre uma honra falar com você!",
         ("fala", "fera"): "Fala fera! Vamos com tudo pra mais uma vitória!",
         ("fala", "meu", "consagrado"): "Fala meu consagrado! FURIA é nossa!",
+        ("seu", "nome"): "Opa! tranquilo? meu nome é FURIOSO e estou aqui pra te auxiliar a ficar ligadão nas notícias da FURIA e do CS! Do que precisa?",
+        ("teu", "nome"): "Opa! tranquilo? meu nome é FURIOSO e estou aqui pra te auxiliar a ficar ligadão nas notícias da FURIA e do CS! Do que precisa?",
     }
 }
 

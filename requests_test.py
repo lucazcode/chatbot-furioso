@@ -1,8 +1,9 @@
+from ai_scraping_filter import ai_scraping_filter
 from flux_control import handle_input
+from ai_classification import classify_input
 
 # Testes
 test_questions = [
-    "",
 
     # Perguntas genéricas/fallback
     "Qual o prato favorito do Fallen?",
@@ -56,4 +57,7 @@ test_questions = [
 # Testando cada pergunta
 for question in test_questions:
     response = handle_input(question)
-    print(f"Usuário: {question}\nFURIOSO: {response}\n")
+    input_type = classify_input(question)
+    question_type = ai_scraping_filter(question)
+
+    print(f"Usuário: {question}\nClassificação: {input_type}\nTipo de pergunta: {question_type}\nFURIOSO: {response}\n")

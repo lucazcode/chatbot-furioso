@@ -1,3 +1,4 @@
+import re
 from unidecode import unidecode
 from extract_coach import extract_coach
 from extract_coach_link import extract_coach_link
@@ -9,7 +10,6 @@ from extract_next_match_opponent import extract_next_match_opponent
 from extract_players_links import extract_players_links
 from extract_players import extract_players
 from extract_team import extract_team
-import re
 
 
 def handle_scraping_request(user_text):
@@ -24,24 +24,38 @@ def handle_scraping_request(user_text):
 
     # Função auxiliar para verificar palavras-chave
     def has_keyword(user_text, keywords):
-        user_text = unidecode(user_text.lower())  # Garantir que o texto está sem acentos e minúsculo
+        # Garante que o texto está sem acentos e minúsculo
+        user_text = unidecode(user_text.lower())
+
         for keyword in keywords:
-            if re.search(r'\b' + re.escape(keyword) + r'\b', user_text):  # Busca por palavras inteiras
+            # Expressão regular que permite palavras intermediárias
+            pattern = r'.*' + r'.*'.join([re.escape(word) for word in keyword.split()]) + r'.*'
+
+            # Verifica se a expressão regular encontra correspondência no texto
+            if re.search(pattern, user_text):
                 return True
         return False
 
-    # Palavras-chave para cada tipo de pergunta (agora sem acentos)
-    keywords_players = ["jogadores", "jogador", "players", "player", "quais jogadores"]
-    keywords_coach = ["treinador", "coach", "tecnico"]
-    keywords_team = ["time", "elenco", "squad", "equipe"]
-    keywords_championship = ["campeonato", "campeonatos", "torneio", "torneios"]
-    keywords_next_match = ["proximo jogo", "quando", "data do proximo jogo", "proxima partida"]
-    keywords_format = ["formato", "bo", "tipo de partida", "formato do jogo"]
-    keywords_stage = ["etapa", "fase", "stages", "fase do jogo"]
-    keywords_opponent = ["adversario", "oponente"]
-    keywords_last_matches = ["ultimo resultado", "ultima partida", "resultado recente", "ultimos resultados",
-    "ultimas partidas", "resultados recentes" "ultimos jogos", "ultimo jogo", "resultado", "resultados",
-    "resultado recente", "resultados recentes"]
+    # Palavras-chave para cada tipo de pergunta
+    keywords_players = [r"jogadores", r"jogador", r"players", r"player", r"quais jogadores"]
+    keywords_coach = [r"treinador", r"coach", r"tecnico"]
+    keywords_team = [r"time", r"elenco", r"squad", r"equipe"]
+    keywords_championship = [r"campeonato", r"campeonatos", r"torneio", r"torneios"]
+    keywords_next_match = [r"proximo jogo", r"proximas partidas", r"proximos resultados",
+       r"proximos jogos", r"proximos jogos da furia", r"quando vai ser a proxima partida",
+       r"qual vai ser o proximo jogo", r"proximos resultados da furia", r"proximo game",
+       r"resultados futuros", r"jogos futuros", r"proximos games", r"proxima partida",
+       r"partidas futuras"]
+    keywords_format = [r"formato", r"tipo de partida", r"formato do jogo"]
+    keywords_stage = [r"etapa", r"fase", r"stages", r"fase do jogo"]
+    keywords_opponent = [r"adversario", r"oponente", r"contra"]
+    keywords_last_matches = [
+        r"ultimo jogo", r"ultimas partidas", r"ultima partida", r"ultimos resultados",
+        r"ultimos jogos", r"ultimos jogos da furia", r"quando foi", r"quais foram",
+        r"qual foi o ultimo jogo", r"ultimos resultados da furia", r"ultimo game", r"ultimos resultados",
+        r"resultados recentes", r"jogos passados", r"ultimos games", r"partida passada",
+        r"partidas passadas", r"resultados"
+    ]
 
     # Caso o usuário pergunte sobre o próximo jogo
     if has_keyword(user_text, keywords_next_match):
@@ -153,18 +167,18 @@ def handle_scraping_request(user_text):
 
     # Caso o usuário pergunte sobre o formato da próxima partida
     elif has_keyword(user_text, keywords_format):
-        match_data = extract_next_match_format_and_stage(team_url)
-        if "format" in match_data:
-            messages.append(f"O formato da próxima partida será {match_data['format']}.")
-            responses["raw_data"]["format"] = match_data["format"]
+        format = extract_next_match_format_and_stage(team_url)
+        if format:
+            messages.append(f"O formato da próxima partida será {format}.")
+            responses["raw_data"]["format"] = format
             found_valid_data = True
 
     # Caso o usuário pergunte sobre a etapa da próxima partida
     elif has_keyword(user_text, keywords_stage):
-        match_data = extract_next_match_format_and_stage(team_url)
-        if "stage" in match_data:
-            messages.append(f"A partida será disputada na fase: {match_data['stage']}.")
-            responses["raw_data"]["stage"] = match_data["stage"]
+        stage = extract_next_match_format_and_stage(team_url)
+        if stage:
+            messages.append(f"A partida será disputada na fase: {stage}.")
+            responses["raw_data"]["stage"] = stage
             found_valid_data = True
 
     # Caso o usuário pergunte sobre o adversário da próxima partida

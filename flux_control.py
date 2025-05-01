@@ -9,7 +9,7 @@ import re
 # Palavras-chave
 keywords = {
     "jogos": [
-        "jogo", "partida", "jogam", "proximo jogo", "quando jogam", "agenda", "horario do jogo", "quem enfrentam",
+        "jogo", "jogos", "game", "games", "partida", "partidas", "jogam", "proximo jogo", "quando jogam", "agenda", "horario do jogo", "quem enfrentam",
         "adversario", "proximo adversario", "match", "calendar", "fixtures", "round"
     ],
     "times": [
@@ -49,20 +49,20 @@ keywords = {
     "beleza?", "ta tranquilo?", "suave?", "tranquilo?", "tudo beleza?",
     "bao?", "de boa?", "yo", "ae", "ae man", "eae", "oie", "oi oi", "mano",
     "fala mano", "fala campeao", "fala guerreiro", "fala brother", "fala truta",
-    "fala chefe", "fala fera", "fala meu consagrado", "sussa?", "boa", "furioso"
+    "fala chefe", "fala fera", "fala meu consagrado", "sussa?", "boa", "furioso", "nome"
     ]
 }
 
 keywords_scraping = [
-    "jogadores", "quais jogadores", "treinador", "coach", "técnico",
+    "jogadores", "quais jogadores", "treinador", "coach", "tecnico", "equipe",
     "time", "elenco", "campeonato", "campeonatos", "torneio", "torneios", "proximo jogo",
     "quando jogam", "data","data do proximo jogo", "proxima partida", "formato",
-    "tipo de partida", "formato do jogo", "etapa", "fase", "stages",
-    "fase do jogo", "adversario", "oponente", "ultimo resultado",
-    "ultima partida", "resultado recente", "ultimos resultados",
-    "ultimas partidas", "resultados recentes" "ultimos jogos", "ultimo jogo", "contra"
+    "tipo de partida", "formato do jogo", "etapa", "fase", "stages", "fase do jogo", "adversario", "oponente", "ultimo jogo",
+    "ultimas partidas", "ultimos resultados", "ultimos jogos", "ultimos jogos da furia", "quando foi a ultima partida",
+    "qual foi o último jogo", "ultimos resultados da furia", "ultimo game",
+    "resultados recentes", "jogos passados", "ultimos games", "partida passada",
+    "partidas passadas"
 ]
-
 
 # Normaliza a entrada do usuário
 def normalize_text(text):
@@ -100,14 +100,18 @@ def fallback_message_format(fallback_message):
 
 # Verifica a existência de palavras-chave na entrada do usuário referenciando uma dicionário de listas
 def has_keyword(user_text, keywords_dict):
+    # Percorre o dicionário de tópicos e suas listas de palavras-chave
     for topic, keyword_list in keywords_dict.items():
-        if any(keyword in user_text for keyword in keyword_list):
-            return True
+        for keyword in keyword_list:
+            if keyword in user_text:
+                return True
     return False
 
 # Verifica a existência de palavras-chave na entrada do usuário referenciando uma lista
 def has_keyword_list(user_text, keyword_list):
-    return any(keyword in user_text for keyword in keyword_list)
+    if any(keyword in user_text for keyword in keyword_list):
+        return True
+    return False
 
 def format_scraping_messages(messages):
     if isinstance(messages, list):
@@ -166,7 +170,7 @@ def control_flow(user_text, user_text_type):
                 return formatted
 
         # Se o scraping falhou
-        scraping_answer["messages"] = "Não tenho essa informação no momento...\n" + get_fallback_message(user_text).get('additional_phrase')
+        scraping_answer["messages"] = "Não tenho essa informação no momento..." + get_fallback_message(user_text).get('additional_phrase')
 
         messages = scraping_answer.get("messages")
         return format_scraping_messages(messages)
@@ -184,7 +188,10 @@ def handle_input(user_text):
     user_text = normalize_text(user_text)
 
     # Classifica como "question" ou "commentary"
-    input_type = classify_input(user_text)
+    if '?' in user_text:
+        input_type = "question"
+    else:
+        input_type = classify_input(user_text)
 
     # Verifica se o tipo de entrada é valido
     if input_type not in ["question", "commentary"]:
