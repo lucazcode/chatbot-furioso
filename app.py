@@ -1,14 +1,16 @@
 import streamlit as st
 from flux_control import handle_input
+import time
 import re
 
 # Carrega imagem da FURIA e do usuário
 avatar_url_assistant = "https://upload.wikimedia.org/wikipedia/pt/f/f9/Furia_Esports_logo.png"
 avatar_url_user = "https://conpedi.org.br/wp-content/uploads/2023/11/user-branco.png"
+background_effect = "https://www.transparenttextures.com/patterns/dark-mosaic.png"
 
 # Edita links para se tornarem clicáveis
 def linkify(text):
-    pattern = r"\[(https://www\.hltv\.org[^\]]+)\]"
+    pattern = r"\[(https://www[^\]]+)\]"
     return re.sub(pattern, r'[<a href="\1" target="_blank">\1</a>]', text)
 
 # Mostra ícones personalizados nas mensagens
@@ -40,7 +42,11 @@ st.markdown(
     <style>
 
     .stApp {
-        background-color: #010202;
+        background-image: url("{background_effect}");
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-color: #100520;
     }
     
     .furioso-box {
@@ -54,8 +60,12 @@ st.markdown(
     .furioso-title {
         font-size: 32px;
         font-weight: bold;
-        color: #d29f3d;
+        color: #f5f5f5;
         animation: pulse 1.5s infinite;
+    }
+    
+    .highlight-name {
+        color: #d29f3d
     }
 
     .furioso-subtitle {
@@ -66,12 +76,22 @@ st.markdown(
     """, unsafe_allow_html=True
 )
 
+# Adiciona efeito de digitação na resposta do chatbot
+def simulate_typing(message, avatar_url, align="left", bg="#211939", text_color="#f5f5f5", delay=0.005):
+    placeholder = st.empty()
+    typed_text = ""
+    for char in message:
+        typed_text += char
+        rendered_message = show_avatar_message(typed_text, avatar_url, align, bg, text_color)
+        placeholder.markdown(rendered_message, unsafe_allow_html=True)
+        time.sleep(delay)
+
 # Executa a aplicação
 def streamlit_interface():
     # Bloco estilizado
     st.markdown("""
         <div class="furioso-box">
-            <div class="furioso-title">😼 Eaí, meu nome é FURIOSO!</div>
+            <div class="furioso-title">😼 <span class="highlight-name">Eaí, meu nome é FURIOSO!</span></div>
             <div class="furioso-subtitle">Vamos bater um papo sobre o time da <strong>FURIA</strong>?</div>
         </div>
     """, unsafe_allow_html=True)
@@ -105,8 +125,7 @@ def streamlit_interface():
             messages.append({"entity": "assistant", "text": assistant_message})
 
             # Re-renderiza a mensagem do assistente
-            st.markdown(show_avatar_message(assistant_message, avatar_url_assistant, align="left", bg="#211939",
-                                            text_color="#f5f5f5"), unsafe_allow_html=True)
+            simulate_typing(assistant_message, avatar_url_assistant, align="left", bg="#211939", text_color="#f5f5f5")
         else:
             st.session_state["messages"] = []
 
