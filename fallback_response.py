@@ -166,11 +166,14 @@ contextual_responses = {
         ("quem", "joga", "awp"): "Nossos atiradores estão afiados e prontos para o combate!",
     },
     'historia': {
-        ("quantos", "titulos", "furia"): "A FURIA já conquistou vários títulos importantes!",
-        ("quantos", "anos", "organizacao"): f"A FURIA está dominando tudo no cenário há {ano_atual - 2017} anos!",
-        ("quantos", "anos", "furia"): f"A FURIA está dominando tudo no cenário há {ano_atual - 2017} anos!",
-        ("qual", "maior", "conquista"): "A FURIA tem conquistas históricas no cenário mundial!",
-        ("desde", "quando", "existe"): "A FURIA vem fazendo história no cenário de e-sports desde 2017!",
+        ("titulo", "furia"): "A FURIA já conquistou vários títulos importantes!",
+        ("titulos", "furia"): "A FURIA já conquistou vários títulos importantes!",
+        ("anos", "organizacao"): f"A FURIA está dominando tudo no cenário há {ano_atual - 2017} anos!",
+        ("anos", "furia"): f"A FURIA está dominando tudo no cenário há {ano_atual - 2017} anos!",
+        ("maior", "conquista"): "A FURIA tem conquistas históricas no cenário mundial!",
+        ("maiores", "conquistas"): "A FURIA tem conquistas históricas no cenário mundial!",
+        ("furia", "existe"): "A FURIA vem fazendo história no cenário de e-sports desde 2017!",
+        ("existe", "tempo"): "A FURIA vem fazendo história no cenário de e-sports desde 2017!",
     },
     'noticias': {
         ("tem", "novidades", "time"): "Sempre tem novidades na FURIA! O time está em constante evolução!",
@@ -322,9 +325,9 @@ def fallback_response(user_text):
     # Se nenhuma palavra-chave for encontrada, retorna uma resposta genérica
     return {
         "response": random.choice([
-            "Essa aí me pegou de jeito! Vou treinar mais pra responder igual a FURIA joga, fechô? 🤝",
-            "Poxa! Não tenho resposta pra essa pergunta agora, mas logo trago notícias, belê? 😎",
-            "Boa pergunta, parceiro! Vou ficar de olho e trazer essa informação pra torcida. 🔥",
+            "Essa aí me pegou de jeito! Vou treinar mais pra responder igual a FURIA joga, fechô? 🤝\n",
+            "Poxa! Não tenho resposta pra essa pergunta agora, mas logo trago notícias, belê? 😎\n",
+            "Boa pergunta, parceiro! Vou ficar de olho e trazer essa informação pra torcida. 🔥\n",
         ]),
         "emoji": "",
         "additional_phrase": "\nSe quiser mais infomações sobre o time de CS da FURIA, acesse:\n[https://www.hltv.org/team/8297/furia]"

@@ -6,17 +6,17 @@ def extract_last_matches_score(my_url):
     page_content = get_page(my_url)
     soup = BeautifulSoup(page_content, "html.parser")
 
-    # Encontra a seção "Recent results" de forma flexível (verifique se o título está correto)
+    # Encontra a seção "Recent results"
     recent_results_header = soup.find("h2", string=lambda text: text and "recent" in text.lower())
 
-    # Se a seção "Recent results" não for encontrada, retorna None
+    # Se a seção "Recent results" não for encontrada
     if not recent_results_header:
         return None
 
     # Encontra a tabela de resultados recentes após o título "Recent results"
     recent_results_table = recent_results_header.find_next("table", class_="table-container match-table")
 
-    # Se a tabela de resultados não for encontrada, retorna None
+    # Se a tabela de resultados não for encontrada
     if not recent_results_table:
         return None
 

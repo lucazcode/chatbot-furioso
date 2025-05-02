@@ -45,7 +45,7 @@ def handle_scraping_request(user_text):
        r"proximos jogos", r"proximos jogos da furia", r"quando vai ser a proxima partida",
        r"qual vai ser o proximo jogo", r"proximos resultados da furia", r"proximo game",
        r"resultados futuros", r"jogos futuros", r"proximos games", r"proxima partida",
-       r"partidas futuras"]
+       r"partidas futuras", "contra", "quem vai jogar"]
     keywords_format = [r"formato", r"tipo de partida", r"formato do jogo"]
     keywords_stage = [r"etapa", r"fase", r"stages", r"fase do jogo"]
     keywords_opponent = [r"adversario", r"oponente", r"contra"]

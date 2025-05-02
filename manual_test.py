@@ -2,6 +2,9 @@ from ai_scraping_filter import ai_scraping_filter
 from flux_control import handle_input
 from ai_classification import classify_input
 
+# Executa testes manuais com exemplos de perguntas para testar o comportamento do bot.
+# Esse arquivo não faz parte do funcionamento do chatbot.
+
 # Testes
 test_questions = [
 
@@ -59,4 +62,9 @@ for question in test_questions:
     input_type = classify_input(question)
     question_type = ai_scraping_filter(question)
 
-    print(f"Usuário: {question}\nClassificação: {input_type}\nTipo de pergunta: {question_type}\nFURIOSO: {response}\n")
+    print("-" * 40)
+    print(f"Usuário: {question}")
+    print(f"Classificação: {input_type}")
+    print(f"Tipo de pergunta: {question_type}")
+    print(f"FURIOSO: {response}")
+    print("-" * 40 + "\n\n")

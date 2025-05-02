@@ -69,7 +69,9 @@ keywords = {
         "stages"
     ],
     'cenario': [
+        "furia",
         "cenario",
+        "organizacao",
         "csgo",
         "cs2",
         "atualizacao",
@@ -228,7 +230,7 @@ def format_scraping_messages(messages):
     elif isinstance(messages, str) and messages.strip():
         return messages
 
-    # Se não tiver mensagens úteis, retorna None
+    # Se não tiver mensagens úteis
     return "Erro na formatação da resposta"
 
 # Controla o fluxo de resposta baseado no tipo de entrada (pergunta ou comentário) e nas palavras-chave detectadas
