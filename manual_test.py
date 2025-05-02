@@ -8,6 +8,17 @@ from ai_classification import classify_input
 # Testes
 test_questions = [
 
+    # Perguntas com disponibilidade de retorno via scraping
+    "Quem são os jogadores da FURIA?",
+    "Quem é o treinador da FURIA?",
+    "Qual é o elenco atual da FURIA?",
+    "Em qual campeonato a FURIA está jogando agora?",
+    "Quando é o próximo jogo da FURIA?",
+    "A próxima partida vai ser BO1 ou BO3?",
+    "Qual é a fase atual da FURIA no campeonato?",
+    "Quem vai ser o adversário da FURIA?",
+    "Quais foram os últimos resultados da FURIA?"
+
     # Perguntas genéricas/fallback
     "Quantos anos tem a organização?",
     "Onde fica a sede da FURIA?",
