@@ -2,9 +2,9 @@ import streamlit as st
 from flux_control import handle_input
 import re
 
-# Carrega imagem da FURIA
+# Carrega imagem da FURIA e do usuário
 avatar_url_assistant = "https://upload.wikimedia.org/wikipedia/pt/f/f9/Furia_Esports_logo.png"
-avatar_url_user = "https://cdn-icons-png.flaticon.com/512/9742/9742847.png"
+avatar_url_user = "https://conpedi.org.br/wp-content/uploads/2023/11/user-branco.png"
 
 # Edita links para se tornarem clicáveis
 def linkify(text):
@@ -55,8 +55,8 @@ def streamlit_interface():
     user_message = st.chat_input("Insira sua mensagem ou 'cls' para limpar o chat)")
 
     # Inicializa ou recupera a lista de mensagens do usuário
-    if user_message: # Se o usuário inseriu uma mensagem...
-        # Limpa a lista (fins de teste)
+    if user_message:
+        # Limpa a lista
         if user_message.lower() != "cls":
             # Adiciona na lista mensagens o texto do usuário
             messages.append({"entity": "user", "text": user_message})
@@ -64,7 +64,7 @@ def streamlit_interface():
             # Atualiza a interface com todas as mensagens até agora
             for message in st.session_state["messages"]:
                 if message["entity"] == "user":
-                    st.markdown(show_avatar_message(message["text"], avatar_url_user, align="right", bg="#9B870C",
+                    st.markdown(show_avatar_message(message["text"], avatar_url_user, align="right", bg="#d29f3d",
                                                     text_color="#f5f5f5"), unsafe_allow_html=True)
                 else:
                     st.markdown(show_avatar_message(message["text"], avatar_url_assistant, align="left", bg="#211939",

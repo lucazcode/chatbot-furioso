@@ -106,13 +106,13 @@ keywords_responses = {
         "head-to-head": "O head-to-head mostra a FURIA sempre na frente!"
     },
     'curiosidades': {
-        "curiosidade": "Você sabia que a FURIA foi a primeira equipe brasileira a disputar as semifinais da IEM Katowice, um dos torneios mais prestigiados do mundo?",
+        "brasil": "Você sabia que a FURIA foi a primeira equipe brasileira a disputar as semifinais da IEM Katowice, um dos torneios mais prestigiados do mundo?",
         "recorde": "Em 2020, a FURIA alcançou o 3º lugar no ranking mundial da HLTV — o mais alto já conquistado por uma equipe brasileira desde a era SK/LG!",
         "superacao": "A FURIA nasceu em 2017 com poucos recursos, e em menos de 3 anos já estava entre os melhores do mundo. Superação é o que não falta!",
         "conquista": "A FURIA foi campeã da Elisa Masters Espoo 2023, vencendo a Apeks na final e mostrando sua força no cenário europeu!",
         "estrelas": "Jogadores como KSCERATO e yuurih são considerados entre os melhores do mundo, figurando em rankings da HLTV em diversos anos.",
         "momentos marcantes": "O Major do Rio em 2022 foi inesquecível: a FURIA foi a única equipe brasileira a chegar aos playoffs, jogando com a torcida enlouquecida no Jeunesse Arena!",
-        "curiosidade furia": "A FURIA foi uma das primeiras organizações brasileiras a estabelecer uma base fixa nos EUA, investindo pesado em estrutura e preparação.",
+        "eua": "A FURIA foi uma das primeiras organizações brasileiras a estabelecer uma base fixa nos EUA, investindo pesado em estrutura e preparação.",
         "ceo": "A FURIA é liderada por dois co-CEOs: Jaime Pádua, especialista em gestão e negócios, e André Akkari, campeão mundial de pôquer e referência no eSports!",
         "sede": "A FURIA tem sedes em São Paulo e nos Estados Unidos, com estrutura profissional em Miami e Los Angeles! Isso permite que o time treine e dispute campeonatos internacionais com qualidade de ponta!"
     },
@@ -202,6 +202,7 @@ contextual_responses = {
         ("fala", "meu", "consagrado"): "Fala meu consagrado! FURIA é nossa!",
         ("seu", "nome"): "Opa! tranquilo? meu nome é FURIOSO e estou aqui pra te auxiliar a ficar ligadão nas notícias da FURIA e do CS! Do que precisa?",
         ("teu", "nome"): "Opa! tranquilo? meu nome é FURIOSO e estou aqui pra te auxiliar a ficar ligadão nas notícias da FURIA e do CS! Do que precisa?",
+        ("quem", "e", "voce"): "Opa! tranquilo? meu nome é FURIOSO e estou aqui pra te auxiliar a ficar ligadão nas notícias da FURIA e do CS! Do que precisa?"
     }
 }
 
@@ -239,11 +240,11 @@ def fallback_response(user_text):
                 additional_phrase = ""
                 if category in ['jogos', 'torneios', 'jogadores especificos', 'noticias', 'historia']:
                     additional_phrases = {
-                        'jogos': "\nSe quiser mais infomações sobre os jogos da FURIA, acesse:\n[https://www.hltv.org/team/8297/furia#tab-matchesBox]",
-                        'torneios': "\nSe quiser mais infomações sobre os torneios que a FURIA disputa no CS, acesse:\n[https://www.hltv.org/team/8297/furia#tab-eventsBox]",
-                        'jogadores especificos': "\nSe quiser mais infomações sobre os jogadores da FURIA no CS, acesse:\n[https://www.hltv.org/team/8297/furia#tab-rosterBox]",
-                        'noticias': "\nSe quiser mais notícias sobre a FURIA no CS, acesse:\n[https://www.hltv.org/team/8297/furia#tab-newsBox]",
-                        'historia': "\nSe quiser mais infomações sobre a história da FURIA, acesse:\n[https://www.furia.gg/quem-somos]"
+                        'jogos': "\n\nSe quiser mais infomações sobre os jogos da FURIA, acesse:\n[https://www.hltv.org/team/8297/furia#tab-matchesBox]",
+                        'torneios': "\n\nSe quiser mais infomações sobre os torneios que a FURIA disputa no CS, acesse:\n[https://www.hltv.org/team/8297/furia#tab-eventsBox]",
+                        'jogadores especificos': "\n\nSe quiser mais infomações sobre os jogadores da FURIA no CS, acesse:\n[https://www.hltv.org/team/8297/furia#tab-rosterBox]",
+                        'noticias': "\n\nSe quiser mais notícias sobre a FURIA no CS, acesse:\n[https://www.hltv.org/team/8297/furia#tab-newsBox]",
+                        'historia': "\n\nSe quiser mais infomações sobre a história da FURIA, acesse:\n[https://www.furia.gg/quem-somos]"
                     }
                     additional_phrase = additional_phrases.get(category, "")
 
@@ -252,6 +253,43 @@ def fallback_response(user_text):
                     "emoji": emoji,
                     "additional_phrase": additional_phrase
                 }
+
+    # Keywords para curiosidades específicas
+    curiosidades = keywords_responses['curiosidades']
+
+    # Verifica se alguma chave exata de curiosidades está na entrada
+    for keyword in curiosidades.keys():
+        if keyword in user_text:
+            response = curiosidades[keyword]
+            emoji = get_emoji_for_response(response)
+            return {
+                "response": response,
+                "emoji": emoji,
+                "additional_phrase": "\n\nQuer mais curiosidades? É só perguntar! 🔍"
+            }
+
+    # Verifica se partes da chave estão na entrada
+    for chave in curiosidades.keys():
+        if any(palavra in user_text.split() for palavra in chave.split()):
+            response = curiosidades[chave]
+            emoji = get_emoji_for_response(response)
+            return {
+                "response": response,
+                "emoji": emoji,
+                "additional_phrase": "\n\nA FURIA tem muito mais história pra contar! 🔍"
+            }
+
+    # Verificação específica para curiosidades
+    if 'curiosidade' in user_text or 'curiosidades' in user_text:
+        curiosidades = keywords_responses['curiosidades']
+        random_key = random.choice(list(curiosidades.keys()))
+        response = curiosidades[random_key]
+        emoji = get_emoji_for_response(response)
+        return {
+            "response": response,
+            "emoji": emoji,
+            "additional_phrase": "\n\nQuer mais curiosidades? A FURIA tem muita história pra contar! 🔍"
+        }
 
     # Verifica se a entrada contém alguma palavra-chave
     for category, responses in keywords_responses.items():
@@ -265,13 +303,13 @@ def fallback_response(user_text):
                 additional_phrase = ""
                 if category in ['jogos', 'times', 'torneios', 'cenario', 'resultados', 'historico', 'jogadores especificos']:
                     additional_phrases = {
-                        'jogos': "\nSe quiser mais infomações sobre os jogos da FURIA, acesse:\n[https://www.hltv.org/team/8297/furia#tab-matchesBox]",
-                        'times': "\nSe quiser mais infomações sobre o time de CS da FURIA, acesse:\n[https://www.hltv.org/team/8297/furia]",
-                        'torneios': "\nSe quiser mais infomações sobre os torneios que a FURIA disputa no CS, acesse:\n[https://www.hltv.org/team/8297/furia#tab-eventsBox]",
-                        'cenario': "\nSe quiser mais notícias sobre cenário de CS, acesse:\n[https://www.hltv.org/]",
-                        'resultados': "\nSe quiser mais infomações sobre os resultados da FURIA no CS, acesse:\n[https://www.hltv.org/team/8297/furia#tab-matchesBox]",
-                        'historico': "\nSe quiser mais infomações sobre o histórico da FURIA no CS, acesse:\n[https://www.hltv.org/team/8297/furia#tab-statsBox]",
-                        'jogadores especificos': "\nSe quiser mais infomações sobre os jogadores da FURIA no CS, acesse:\n[https://www.hltv.org/team/8297/furia#tab-rosterBox]"
+                        'jogos': "\n\nSe quiser mais infomações sobre os jogos da FURIA, acesse:\n[https://www.hltv.org/team/8297/furia#tab-matchesBox]",
+                        'times': "\n\nSe quiser mais infomações sobre o time de CS da FURIA, acesse:\n[https://www.hltv.org/team/8297/furia]",
+                        'torneios': "\n\nSe quiser mais infomações sobre os torneios que a FURIA disputa no CS, acesse:\n[https://www.hltv.org/team/8297/furia#tab-eventsBox]",
+                        'cenario': "\n\nSe quiser mais notícias sobre cenário de CS, acesse:\n[https://www.hltv.org/]",
+                        'resultados': "\n\nSe quiser mais infomações sobre os resultados da FURIA no CS, acesse:\n[https://www.hltv.org/team/8297/furia#tab-matchesBox]",
+                        'historico': "\n\nSe quiser mais infomações sobre o histórico da FURIA no CS, acesse:\n[https://www.hltv.org/team/8297/furia#tab-statsBox]",
+                        'jogadores especificos': "\n\nSe quiser mais infomações sobre os jogadores da FURIA no CS, acesse:\n[https://www.hltv.org/team/8297/furia#tab-rosterBox]"
                     }
                     additional_phrase = additional_phrases.get(category, "")
 

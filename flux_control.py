@@ -8,48 +8,154 @@ import re
 
 # Palavras-chave
 keywords = {
-    "jogos": [
-        "jogo", "jogos", "game", "games", "partida", "partidas", "jogam", "proximo jogo", "quando jogam", "agenda", "horario do jogo", "quem enfrentam",
-        "adversario", "proximo adversario", "match", "calendar", "fixtures", "round"
+    'jogos': [
+        "jogo",
+        "partida",
+        "jogam",
+        "proximo jogo",
+        "quando jogam",
+        "agenda",
+        "horario do jogo",
+        "quem enfrentam",
+        "adversario",
+        "proximo adversario",
+        "match",
+        "calendar",
+        "fixtures",
+        "round",
+        "data",
+        "fase",
+        "oponente"
     ],
-    "times": [
-        "time", "equipe", "lineup", "elenco", "jogadores", "squad", "composicao", "mudanca de time",
-        "transferencia", "team", "roster", "substituicao", "novato", "coach", "tecnico", "treinador"
+    'times': [
+        "time",
+        "equipe",
+        "lineup",
+        "elenco",
+        "jogadores",
+        "squad",
+        "composicao",
+        "mudanca de time",
+        "transferencia",
+        "team",
+        "roster",
+        "substituicao",
+        "novato",
+        "coach",
+        "tecnico",
+        "treinador"
     ],
-    "torneios": [
-        "campeonato", "torneio", "liga", "major", "qualifier", "eliminatoria", "competicao", "evento",
-        "final", "semi-final", "playoffs", "fase de grupos", "bracket", "classificacao", "ranking"
+    'torneios': [
+        "campeonato",
+        "campeonatos",
+        "torneio",
+        "torneios",
+        "liga",
+        "major",
+        "qualifier",
+        "eliminatoria",
+        "competicao",
+        "evento",
+        "final",
+        "semi-final",
+        "playoffs",
+        "fase de grupos",
+        "bracket",
+        "classificacao",
+        "ranking",
+        "formato",
+        "etapa",
+        "fase",
+        "stages"
     ],
-    "cenario": [
-        "cenario", "csgo", "cs2", "atualizacao", "meta", "mudanca de meta", "mudanca no csgo", "cenario atual",
-        "ranking mundial", "hltv ranking", "ranking csgo", "patch notes", "update", "balanco", "mudancas", "furia",
-        "organizacao"
+    'cenario': [
+        "cenario",
+        "csgo",
+        "cs2",
+        "atualizacao",
+        "meta",
+        "mudanca de meta",
+        "mudanca no csgo",
+        "cenario atual",
+        "ranking mundial",
+        "hltv ranking",
+        "ranking csgo",
+        "patch notes",
+        "update",
+        "balanco",
+        "mudancas",
+        "rival",
+        "rivais"
     ],
-    "resultados": [
-        "resultado", "resultados", "score", "placar", "quantos rounds", "ganhou", "perdeu", "quem venceu",
-        "desempenho", "estatisticas", "kda", "rating", "mvp", "melhor jogador", "top fragger", "frag lider",
-        "ultima partida", "ultimas partidas"
+    'resultados': [
+        "resultado",
+        "score",
+        "placar",
+        "quantos rounds",
+        "ganhou",
+        "perdeu",
+        "quem venceu",
+        "desempenho",
+        "estatisticas",
+        "kda",
+        "rating",
+        "mvp",
+        "melhor jogador",
+        "top fragger",
+        "frag lider"
     ],
-    "historico": [
-        "historico", "ultimos jogos", "retrospecto", "ultimas partidas", "ultimos resultados",
-        "estatisticas passadas", "ultimos confrontos", "head-to-head", "historico contra"
+    'historico': [
+        "historico",
+        "retrospecto",
+        "ultimas partidas",
+        "ultimos resultados",
+        "estatisticas passadas",
+        "ultimos confrontos",
+        "head-to-head",
+        "resultados recentes",
+        "passado",
+        "passada",
+        "passados",
+        "passadas"
     ],
-    "curiosidades": [
-        "curiosidade", "fato curioso", "historia do time", "historia da furia", "recordes", "recorde de kills",
-        "recorde de vitorias", "momento marcante", "melhor jogo", "melhor campanha", "maior vitoria"
+    'curiosidades': [
+        "brasil",
+        "recorde",
+        "superacao",
+        "conquista",
+        "estrelas",
+        "momentos marcantes",
+        "eua",
+        "ceo",
+        "sede",
+        "curiosidade",
+        "curiosidades"
     ],
-    "jogadores especificos": [
-        "yuurih", "kscerato", "fallen", "chelo", "art", "drop", "coldzera", "fer", "fnx", "boltz",
-        "cogu", "coach guerri", "guerri", "zews", "fnx", "lucas1", "hen1"
+    'jogadores especificos': [
+        "art",
+        "yuurih",
+        "kscerato",
+        "fallen",
+        "chelo",
+        "xand",
+        "guerri"
     ],
-    "saudacoes": [
-    "ola", "bom dia", "boa tarde", "boa noite", "saudacoes", "cumprimentos",
-    "como vai", "como esta", "tudo bem", "tudo certo", "prazer",
-    "com licenca", "oi", "eai", "fala", "fala ai", "opa", "salve",
-    "beleza?", "ta tranquilo?", "suave?", "tranquilo?", "tudo beleza?",
-    "bao?", "de boa?", "yo", "ae", "ae man", "eae", "oie", "oi oi", "mano",
-    "fala mano", "fala campeao", "fala guerreiro", "fala brother", "fala truta",
-    "fala chefe", "fala fera", "fala meu consagrado", "sussa?", "boa", "furioso", "nome"
+    'saudacoes': [
+        "furioso",
+        "ola",
+        "saudacoes",
+        "cumprimentos",
+        "prazer",
+        "oi",
+        "opa",
+        "salve",
+        "beleza",
+        "yo",
+        "ae",
+        "oie",
+        "boa",
+        "eai",
+        "fala"
     ]
 }
 
