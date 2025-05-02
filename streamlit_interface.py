@@ -13,6 +13,13 @@ def linkify(text):
 
 # Mostra ícones personalizados nas mensagens
 def show_avatar_message(message, avatar_url, align="left", bg="#1B1035", text_color="#FFF"):
+    # Remove espaços em branco extras e verifica se a mensagem é vazia
+    message = message.strip()
+
+    # Retorna uma string vazia caso a entrada seja vazia
+    if not message:
+        return ""
+
     alignment = "flex-start" if align == "left" else "flex-end"
     message = message.replace('\n', '<br>')
     message = linkify(message)
@@ -35,16 +42,39 @@ st.markdown(
     .stApp {
         background-color: #010202;
     }
+    
+    .furioso-box {
+        background-color: #211939;
+        border-left: 5px solid #d29f3d;
+        padding: 20px;
+        border-radius: 12px;
+        margin-bottom: 20px;
+    }
 
+    .furioso-title {
+        font-size: 32px;
+        font-weight: bold;
+        color: #d29f3d;
+        animation: pulse 1.5s infinite;
+    }
+
+    .furioso-subtitle {
+        font-size: 18px;
+        color: #f5f5f5;
+    }
     </style>
     """, unsafe_allow_html=True
 )
 
 # Executa a aplicação
 def streamlit_interface():
-
-    st.header("😼 Oi, meu nome é FURIOSO!")
-    st.write("### Vamos bater um papo sobre o time da FURIA?")
+    # Bloco estilizado
+    st.markdown("""
+        <div class="furioso-box">
+            <div class="furioso-title">😼 Eaí, meu nome é FURIOSO!</div>
+            <div class="furioso-subtitle">Vamos bater um papo sobre o time da <strong>FURIA</strong>?</div>
+        </div>
+    """, unsafe_allow_html=True)
 
     if "messages" not in st.session_state:
         st.session_state["messages"] = []

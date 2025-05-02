@@ -288,7 +288,7 @@ def control_flow(user_text, user_text_type):
 def handle_input(user_text):
     # Verifica se o texto do usuário é válido
     if not user_text or user_text.strip() == "":
-        return "Desculpe, não entendi bem. Poderia reformular sua pergunta? ☺️"
+        return "Hmm, parece que a mensagem veio vazia. Que tal tentar novamente? 😊"
 
     # Normaliza entrada do usuário
     user_text = normalize_text(user_text)
