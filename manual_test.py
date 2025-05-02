@@ -1,6 +1,6 @@
-from ai_scraping_filter import ai_scraping_filter
-from flux_control import handle_input
-from ai_classification import classify_input
+import logging
+from flux_control import handle_input, log_buffer
+from logger import enable_debug
 
 # Executa testes manuais com exemplos de perguntas para testar o comportamento do bot.
 # Esse arquivo não faz parte do funcionamento do chatbot.
@@ -67,15 +67,19 @@ test_questions = [
     "Quais são as estatísticas do time no atual campeonato?"
 ]
 
+# Habilita ou desabilita os logs no terminal (opcional)
+enable_debug()
+
 # Testando cada pergunta
+print("[PERGUNTAS E RESPOSTAS]\n")
 for question in test_questions:
     response = handle_input(question)
-    input_type = classify_input(question)
-    question_type = ai_scraping_filter(question)
-
     print("-" * 40)
     print(f"Usuário: {question}")
-    print(f"Classificação: {input_type}")
-    print(f"Tipo de pergunta: {question_type}")
     print(f"FURIOSO: {response}")
-    print("-" * 40 + "\n\n")
+    print("-" * 40 + "\n")
+
+if logging.getLogger().isEnabledFor(logging.DEBUG):
+    print("[LOG DE EXECUÇÃO]\n")
+    for log in log_buffer:
+        print(log)

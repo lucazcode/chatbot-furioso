@@ -5,7 +5,7 @@ from extract_coach_link import extract_coach_link
 from extract_championships import extract_championships
 from extract_last_matches_score import extract_last_matches_score
 from extract_next_match_date_time import extract_next_match_date_time
-from extract_next_match_format_and_stage import extract_next_match_format_and_stage, extract_next_match_url
+from extract_next_match_format_and_stage import extract_next_match_format_and_stage
 from extract_next_match_opponent import extract_next_match_opponent
 from extract_players_links import extract_players_links
 from extract_players import extract_players
@@ -113,7 +113,7 @@ def handle_scraping_request(user_text):
             names = '\n'.join(player_info)
 
             # Adiciona a resposta
-            messages.append(f"Os jogadores atuais da FURIA são:\n{names}.")
+            messages.append(f"Atualmente, os jogadores da FURIA são:\n{names}.")
 
             # Salva os dados
             responses["raw_data"]["players"] = players
@@ -127,7 +127,7 @@ def handle_scraping_request(user_text):
 
         if coach and coach_link:
             # Monta a mensagem com o nome do treinador e o link
-            messages.append(f"O treinador atual da FURIA é {coach} [{coach_link}].")
+            messages.append(f"Atualmente, o treinador da FURIA é {coach} [{coach_link}].")
 
             # Salva os dados
             responses["raw_data"]["coach"] = coach

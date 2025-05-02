@@ -4,6 +4,7 @@ from handle_scraping_request import handle_scraping_request
 from fallback_deny import fallback_deny
 from ai_scraping_filter import ai_scraping_filter
 from fallback_response import fallback_response
+import logging
 import re
 
 # Palavras-chave
@@ -182,35 +183,46 @@ keywords_scraping = [
     "partidas passadas", "bo1", "bo2", "bo3"
 ]
 
+# Lista para armazenar os logs de debug
+log_buffer = []
+
+# Função para adicionar logs à lista
+def log_to_buffer(message, level="DEBUG"):
+    if logging.getLogger().isEnabledFor(logging.DEBUG):
+        log_buffer.append(f"DEBUG: {message}")
+
 # Normaliza a entrada do usuário
 def normalize_text(text):
+    log_to_buffer(f"Normalizando o seguinte texto de entrada: {text}")
     return unidecode(text.lower())
 
 # Retorna os dados da mensagem de fallback individualmente
 def get_fallback_message(user_text):
+    log_to_buffer(f"Obtendo mensagem de fallback para: {user_text}")
     message = fallback_response(user_text)
 
-    # Sempre retorna um dicionário
     if isinstance(message, dict):
         response = message.get('response', "Informação indisponível")
         emoji = message.get('emoji', "")
         additional_phrase = message.get('additional_phrase', "")
-
+        log_to_buffer(f"Fallback dict retornado: {message}")
         return {
             "response": response,
             "emoji": emoji,
             "additional_phrase": additional_phrase
         }
     else:
-        # Se a mensagem não for um dicionário, retorna uma mensagem de erro
+        log_to_buffer("Mensagem de fallback não é um dicionário!")
         return {
             "response": "Erro ao obter a mensagem de fallback.",
             "emoji": "",
             "additional_phrase": ""
         }
 
+
 # Formata a mensagem de fallback completa
 def fallback_message_format(fallback_message):
+    log_to_buffer(f"Formatando mensagem de fallback: {fallback_message}")
     if isinstance(fallback_message, dict):
         return f"{fallback_message.get('response')} {fallback_message.get('emoji')}{fallback_message.get('additional_phrase')}"
     else:
@@ -218,102 +230,109 @@ def fallback_message_format(fallback_message):
 
 # Verifica a existência de palavras-chave na entrada do usuário referenciando uma dicionário de listas
 def has_keyword(user_text, keywords_dict):
-    # Percorre o dicionário de tópicos e suas listas de palavras-chave
+    log_to_buffer(f"Buscando palavras-chave em: {user_text}")
     for topic, keyword_list in keywords_dict.items():
         for keyword in keyword_list:
             if keyword in user_text:
+                log_to_buffer(f"Palavra-chave encontrada: {keyword} no tópico: {topic}")
                 return True
+    log_to_buffer("Nenhuma palavra-chave encontrada no dicionário.")
     return False
 
 # Verifica a existência de palavras-chave na entrada do usuário referenciando uma lista
 def has_keyword_list(user_text, keyword_list):
+    log_to_buffer(f"Buscando palavras-chave específicas em: {user_text}")
     if any(keyword in user_text for keyword in keyword_list):
+        log_to_buffer("Palavra-chave da lista encontrada.")
         return True
+    log_to_buffer("Nenhuma palavra-chave da lista encontrada.")
     return False
 
+# Formata mensagens com scraping extraído
 def format_scraping_messages(messages):
+    log_to_buffer(f"Formatando mensagens de scraping: {messages}")
     if isinstance(messages, list):
-        # Verifica se tem ao menos 1 item não vazio
         filtered = [m for m in messages if m.strip()]
         if filtered:
             return "\n".join(filtered)
     elif isinstance(messages, str) and messages.strip():
         return messages
-
-    # Se não tiver mensagens úteis
+    log_to_buffer("Nenhuma mensagem útil para formatar.")
     return "Erro na formatação da resposta"
 
 # Controla o fluxo de resposta baseado no tipo de entrada (pergunta ou comentário) e nas palavras-chave detectadas
 def control_flow(user_text, user_text_type):
+    log_to_buffer(f"Iniciando controle de fluxo para entrada: '{user_text}' do tipo: '{user_text_type}'")
     scraping_classification = ai_scraping_filter(user_text)
+    log_to_buffer(f"Classificação AI para scraping: {scraping_classification}")
 
-    # Verifica se não tem nenhuma palavra-chave
     if not has_keyword(user_text, keywords) and not has_keyword_list(user_text, keywords_scraping):
+        log_to_buffer("Nenhuma palavra-chave detectada. Ativando fallback deny.")
         return fallback_deny(user_text)
 
-    # Se o texto contém palavras-chave de scraping sobre o time e "furia", aciona a busca por scraping
     if any(keyword in user_text for keyword in keywords_scraping) and "furia" in user_text:
-        print("[Busca por scraping iniciada]")
-
+        log_to_buffer("Critérios de scraping diretos atendidos.")
         scraping_answer = handle_scraping_request(user_text)
 
-        # Se o status de retorno for um sucesso, retorna o scraping
         if scraping_answer and scraping_answer.get("status") == "success":
+            log_to_buffer("Resposta de scraping bem-sucedida.")
             messages = scraping_answer.get("messages")
-            formatted = format_scraping_messages(messages)
-            if formatted:
-                return formatted
+            return format_scraping_messages(messages)
 
-        # Se o scraping falhou
-        scraping_answer["messages"] = "Não tenho essa informação no momento..." + get_fallback_message(user_text).get('additional_phrase')
+        log_to_buffer("Scraping falhou. Recorre ao fallback.")
+        scraping_answer["messages"] = "Não tenho essa informação no momento..." + get_fallback_message(user_text).get(
+            'additional_phrase')
+        return format_scraping_messages(scraping_answer.get("messages"))
 
-        messages = scraping_answer.get("messages")
-        return format_scraping_messages(messages)
-
-    # Verificação principal para scraping
     if (user_text_type == "question" and
             has_keyword(user_text, keywords) and
             scraping_classification == "factual_request" and
             has_keyword_list(user_text, keywords_scraping)):
 
-        print("[Busca por scraping iniciada]")
-
+        log_to_buffer("Critérios de scraping com pergunta atendidos.")
         scraping_answer = handle_scraping_request(user_text)
 
-        # Se o status de retorno for um sucesso, retorna o scraping
         if scraping_answer and scraping_answer.get("status") == "success":
-            messages = scraping_answer.get("messages")
-            formatted = format_scraping_messages(messages)
-            if formatted:
-                return formatted
+            log_to_buffer("Resposta de scraping bem-sucedida.")
+            return format_scraping_messages(scraping_answer.get("messages"))
 
-        # Se o scraping falhou
-        scraping_answer["messages"] = "Não tenho essa informação no momento..." + get_fallback_message(user_text).get('additional_phrase')
+        log_to_buffer("Scraping falhou. Recorre ao fallback.")
+        scraping_answer["messages"] = "Não tenho essa informação no momento..." + get_fallback_message(user_text).get(
+            'additional_phrase')
+        return format_scraping_messages(scraping_answer.get("messages"))
 
-        messages = scraping_answer.get("messages")
-        return format_scraping_messages(messages)
-
-    # Fallback para perguntas não factuais ou sem keywords de scraping
+    log_to_buffer("Fluxo final: Fallback genérico aplicado.")
     return fallback_message_format(get_fallback_message(user_text))
 
-# Processa a entrada do usuário, classificando e direcionando para o controle adequado
+
+# Faz a requisição de resposta do chatbot
 def handle_input(user_text):
-    # Verifica se o texto do usuário é válido
+    log_to_buffer("...")
+    log_to_buffer("-" * 33)
+    log_to_buffer(f"Recebida entrada do usuário: {user_text}")
     if not user_text or user_text.strip() == "":
+        log_to_buffer("Entrada vazia recebida.")
         return "Hmm, parece que a mensagem veio vazia. Que tal tentar novamente? 😊"
 
-    # Normaliza entrada do usuário
     user_text = normalize_text(user_text)
+    log_to_buffer(f"Texto de entrada normalizado: {user_text}")
 
-    # Classifica como "question" ou "commentary"
     if '?' in user_text:
         input_type = "question"
     else:
         input_type = classify_input(user_text)
 
-    # Verifica se o tipo de entrada é valido
+    log_to_buffer(f"Tipo de entrada classificado como: {input_type}")
+
     if input_type not in ["question", "commentary"]:
+        log_to_buffer(f"Tipo de entrada inválido detectado: {input_type}")
         return "Desculpe, não consegui entender o contexto da sua mensagem. Poderia reformular sua pergunta? ☺️"
 
-    # Passa o tipo diretamente para o fluxo de controle
-    return control_flow(user_text, input_type)
+    log_to_buffer(f"Nova interação iniciada com input: {user_text}")
+
+    response = control_flow(user_text, input_type)
+
+    log_to_buffer(f"Interação finalizada para: {user_text}")
+    log_to_buffer("-" * 33)
+
+    return response
