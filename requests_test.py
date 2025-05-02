@@ -6,7 +6,6 @@ from ai_classification import classify_input
 test_questions = [
 
     # Perguntas genéricas/fallback
-    "Qual o prato favorito do Fallen?",
     "Quantos anos tem a organização?",
     "Onde fica a sede da FURIA?",
     "Quem é o CEO da FURIA?",
