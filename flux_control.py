@@ -149,9 +149,11 @@ keywords = {
     ],
     'saudacoes': [
         "furioso",
+        "nome",
         "voce",
         "vc",
         "tu",
+        "seu",
         "ola",
         "saudacoes",
         "cumprimentos",
