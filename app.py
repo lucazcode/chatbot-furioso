@@ -6,7 +6,6 @@ import re
 # Carrega imagem da FURIA e do usuário
 avatar_url_assistant = "https://upload.wikimedia.org/wikipedia/pt/f/f9/Furia_Esports_logo.png"
 avatar_url_user = "https://conpedi.org.br/wp-content/uploads/2023/11/user-branco.png"
-background_effect = "https://www.transparenttextures.com/patterns/dark-mosaic.png"
 
 # Edita links para se tornarem clicáveis
 def linkify(text):
@@ -42,10 +41,6 @@ st.markdown(
     <style>
 
     .stApp {
-        background-image: url("{background_effect}");
-        background-size: cover;
-        background-repeat: no-repeat;
-        background-attachment: fixed;
         background-color: #100520;
     }
     
