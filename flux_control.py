@@ -33,6 +33,8 @@ keywords = {
         "lineup",
         "elenco",
         "jogadores",
+        "player",
+        "players",
         "squad",
         "composicao",
         "mudanca de time",
@@ -64,6 +66,9 @@ keywords = {
         "classificacao",
         "ranking",
         "formato",
+        "bo1",
+        "bo2",
+        "bo3",
         "etapa",
         "fase",
         "stages"
@@ -144,6 +149,9 @@ keywords = {
     ],
     'saudacoes': [
         "furioso",
+        "voce",
+        "vc",
+        "tu",
         "ola",
         "saudacoes",
         "cumprimentos",
@@ -162,14 +170,14 @@ keywords = {
 }
 
 keywords_scraping = [
-    "jogadores", "quais jogadores", "treinador", "coach", "tecnico", "equipe",
+    "jogadores", "quais jogadores","player", "players", "treinador", "coach", "tecnico", "equipe",
     "time", "elenco", "campeonato", "campeonatos", "torneio", "torneios", "proximo jogo",
     "quando jogam", "data","data do proximo jogo", "proxima partida", "formato",
     "tipo de partida", "formato do jogo", "etapa", "fase", "stages", "fase do jogo", "adversario", "oponente", "ultimo jogo",
     "ultimas partidas", "ultimos resultados", "ultimos jogos", "ultimos jogos da furia", "quando foi a ultima partida",
     "qual foi o último jogo", "ultimos resultados da furia", "ultimo game",
     "resultados recentes", "jogos passados", "ultimos games", "partida passada",
-    "partidas passadas"
+    "partidas passadas", "bo1", "bo2", "bo3"
 ]
 
 # Normaliza a entrada do usuário

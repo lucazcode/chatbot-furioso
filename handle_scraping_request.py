@@ -5,7 +5,7 @@ from extract_coach_link import extract_coach_link
 from extract_championships import extract_championships
 from extract_last_matches_score import extract_last_matches_score
 from extract_next_match_date_time import extract_next_match_date_time
-from extract_next_match_format_and_stage import extract_next_match_format_and_stage
+from extract_next_match_format_and_stage import extract_next_match_format_and_stage, extract_next_match_url
 from extract_next_match_opponent import extract_next_match_opponent
 from extract_players_links import extract_players_links
 from extract_players import extract_players
@@ -46,7 +46,7 @@ def handle_scraping_request(user_text):
        r"qual vai ser o proximo jogo", r"proximos resultados da furia", r"proximo game",
        r"resultados futuros", r"jogos futuros", r"proximos games", r"proxima partida",
        r"partidas futuras", "contra", "quem vai jogar"]
-    keywords_format = [r"formato", r"tipo de partida", r"formato do jogo"]
+    keywords_format = [r"formato", r"tipo de partida", r"formato do jogo", r"bo1", r"bo2", r"bo3"]
     keywords_stage = [r"etapa", r"fase", r"stages", r"fase do jogo"]
     keywords_opponent = [r"adversario", r"oponente", r"contra"]
     keywords_last_matches = [
@@ -57,8 +57,34 @@ def handle_scraping_request(user_text):
         r"partidas passadas", r"resultados"
     ]
 
+    # Caso o usuário pergunte sobre o formato da próxima partida
+    if has_keyword(user_text, keywords_format):
+        match_data = extract_next_match_format_and_stage(team_url)
+        if match_data:
+            format = match_data.get("format")
+            messages.append(f"O formato da próxima partida será {format}.")
+            responses["raw_data"]["format"] = format
+            found_valid_data = True
+
+    # Caso o usuário pergunte sobre a etapa da próxima partida
+    elif has_keyword(user_text, keywords_stage):
+        match_data = extract_next_match_format_and_stage(team_url)
+        if match_data:
+            stage = match_data.get("stage")
+            messages.append(f"A partida será disputada na fase: {stage}.")
+            responses["raw_data"]["stage"] = stage
+            found_valid_data = True
+
+    # Caso o usuário pergunte sobre o adversário da próxima partida
+    elif has_keyword(user_text, keywords_opponent):
+        opponent = extract_next_match_opponent(team_url)
+        if opponent:
+            messages.append(f"O adversário da próxima partida será: {opponent}.")
+            responses["raw_data"]["opponent"] = opponent
+            found_valid_data = True
+
     # Caso o usuário pergunte sobre o próximo jogo
-    if has_keyword(user_text, keywords_next_match):
+    elif has_keyword(user_text, keywords_next_match):
         match_data = extract_next_match_date_time(team_url)
         match_opponent = extract_next_match_opponent(team_url)
         if match_data:
@@ -163,30 +189,6 @@ def handle_scraping_request(user_text):
             messages.append("A FURIA está participando dos seguintes campeonatos (principais):")
             messages.extend([f"- {c}" for c in championships])
             responses["raw_data"]["championships"] = championships
-            found_valid_data = True
-
-    # Caso o usuário pergunte sobre o formato da próxima partida
-    elif has_keyword(user_text, keywords_format):
-        format = extract_next_match_format_and_stage(team_url)
-        if format:
-            messages.append(f"O formato da próxima partida será {format}.")
-            responses["raw_data"]["format"] = format
-            found_valid_data = True
-
-    # Caso o usuário pergunte sobre a etapa da próxima partida
-    elif has_keyword(user_text, keywords_stage):
-        stage = extract_next_match_format_and_stage(team_url)
-        if stage:
-            messages.append(f"A partida será disputada na fase: {stage}.")
-            responses["raw_data"]["stage"] = stage
-            found_valid_data = True
-
-    # Caso o usuário pergunte sobre o adversário da próxima partida
-    elif has_keyword(user_text, keywords_opponent):
-        opponent = extract_next_match_opponent(team_url)
-        if opponent:
-            messages.append(f"O adversário da próxima partida será: {opponent}.")
-            responses["raw_data"]["opponent"] = opponent
             found_valid_data = True
 
     # Caso o usuário pergunte sobre os últimos resultados

@@ -205,7 +205,9 @@ contextual_responses = {
         ("fala", "meu", "consagrado"): "Fala meu consagrado! FURIA é nossa!",
         ("seu", "nome"): "Opa! tranquilo? meu nome é FURIOSO e estou aqui pra te auxiliar a ficar ligadão nas notícias da FURIA e do CS! Do que precisa?",
         ("teu", "nome"): "Opa! tranquilo? meu nome é FURIOSO e estou aqui pra te auxiliar a ficar ligadão nas notícias da FURIA e do CS! Do que precisa?",
-        ("quem", "e", "voce"): "Opa! tranquilo? meu nome é FURIOSO e estou aqui pra te auxiliar a ficar ligadão nas notícias da FURIA e do CS! Do que precisa?"
+        ("quem", "e", "voce"): "Opa! tranquilo? meu nome é FURIOSO e estou aqui pra te auxiliar a ficar ligadão nas notícias da FURIA e do CS! Do que precisa?",
+        ("quem", "e", "vc"): "Opa! tranquilo? meu nome é FURIOSO e estou aqui pra te auxiliar a ficar ligadão nas notícias da FURIA e do CS! Do que precisa?",
+        ("quem", "e", "tu"): "Opa! tranquilo? meu nome é FURIOSO e estou aqui pra te auxiliar a ficar ligadão nas notícias da FURIA e do CS! Do que precisa?"
     }
 }
 
