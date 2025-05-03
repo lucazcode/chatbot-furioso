@@ -40,12 +40,12 @@ def handle_scraping_request(user_text):
     keywords_players = [r"jogadores", r"jogador", r"players", r"player", r"quais jogadores"]
     keywords_coach = [r"treinador", r"coach", r"tecnico"]
     keywords_team = [r"time", r"elenco", r"squad", r"equipe"]
-    keywords_championship = [r"campeonato", r"campeonatos", r"torneio", r"torneios"]
+    keywords_championship = [r"campeonato", r"campeonatos", r"torneio", r"torneios", r"eventos", r"evento"]
     keywords_next_match = [r"proximo jogo", r"proximas partidas", r"proximos resultados",
        r"proximos jogos", r"proximos jogos da furia", r"quando vai ser a proxima partida",
        r"qual vai ser o proximo jogo", r"proximos resultados da furia", r"proximo game",
        r"resultados futuros", r"jogos futuros", r"proximos games", r"proxima partida",
-       r"partidas futuras", "contra", "quem vai jogar"]
+       r"partidas futuras", r"contra", r"quem vai jogar", r"proximo match"]
     keywords_format = [r"formato", r"tipo de partida", r"formato do jogo", r"bo1", r"bo2", r"bo3"]
     keywords_stage = [r"etapa", r"fase", r"stages", r"fase do jogo"]
     keywords_opponent = [r"adversario", r"oponente", r"contra"]
@@ -71,7 +71,7 @@ def handle_scraping_request(user_text):
         match_data = extract_next_match_format_and_stage(team_url)
         if match_data:
             stage = match_data.get("stage")
-            messages.append(f"A partida será disputada na fase: {stage}.")
+            messages.append(f"A próxima partida será disputada na fase: {stage}.")
             responses["raw_data"]["stage"] = stage
             found_valid_data = True
 

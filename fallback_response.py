@@ -117,13 +117,12 @@ keywords_responses = {
         "sede": "A FURIA tem sedes em São Paulo e nos Estados Unidos, com estrutura profissional em Miami e Los Angeles! Isso permite que o time treine e dispute campeonatos internacionais com qualidade de ponta!"
     },
     'jogadores especificos': {
-        "art": "O ART é o verdadeiro capitão! Com ele no comando, a FURIA vai longe!",
+        "yekindar": "O YEKINDAR é a carta na manga da FURIA! Sempre surpreendendo!",
         "yuurih": "Yuurih é um monstro! Cada partida é uma exibição de talento!",
         "kscerato": "Kscerato é sempre decisivo! Esse cara é puro talento!",
         "fallen": "O Fallen sempre joga com maestria! Lenda do CS, não tem como parar!",
-        "chelo": "Chelo é imbatível! Sempre trazendo resultados incríveis para a FURIA!",
-        "xand": "Xand é pura habilidade! Quando ele joga, é sempre um show à parte!",
-        "guerri": "Guerri é o cérebro por trás da FURIA! Ele sabe como fazer a equipe vencer!"
+        "molodoy": "Molodoy é imbatível! Sempre trazendo resultados incríveis para a FURIA!",
+        "sidde": "Sidde é o cérebro por trás da FURIA! Ele sabe como fazer a equipe vencer!"
     },
     'saudacoes': {
         "furioso": "Eu mesmo! estou aqui pra te auxiliar a ficar ligadão nas notícias da FURIA e do CS! Do que precisa?",
@@ -161,6 +160,10 @@ contextual_responses = {
     },
     'jogadores': {
         ("como", "esta", "fallen"): "O Fallen está em grande forma, liderando a FURIA para vitórias!",
+        ("como", "esta", "yekindar"): "YEKINDAR chegou com tudo, adicionando agressividade e impacto imediato à equipe!",
+        ("como", "esta", "molodoy"): "Molodoy está se adaptando bem, oferecendo estabilidade e precisão no AWP!",
+        ("como", "esta", "kscerato"): "KSCERATO continua sendo uma fortaleza, mantendo performances consistentes e decisivas!",
+        ("como", "esta", "yuurih"): "Yuurih segue como peça-chave, contribuindo com jogadas inteligentes e clutchs importantes!",
         ("quem", "melhor", "kda"): "Nossos jogadores estão sempre entre os melhores em estatísticas!",
         ("quais", "jogadores", "time"): "A FURIA tem um time completo de estrelas do CS!",
         ("quem", "joga", "awp"): "Nossos atiradores estão afiados e prontos para o combate!",

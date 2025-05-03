@@ -7,8 +7,7 @@ from logger import enable_debug
 
 # Testes
 test_questions = [
-
-    # Perguntas com disponibilidade de retorno via scraping
+    # Exemplo de mensagens com respostas disponíveis via scraping
     "Quem são os jogadores da FURIA?",
     "Quem é o treinador da FURIA?",
     "Qual é o elenco atual da FURIA?",
@@ -19,63 +18,47 @@ test_questions = [
     "Quem vai ser o adversário da FURIA?",
     "Quais foram os últimos resultados da FURIA?"
 
-    # Perguntas genéricas/fallback
-    "Quantos anos tem a organização?",
-    "Onde fica a sede da FURIA?",
-    "Quem é o CEO da FURIA?",
+    # # Mensagens genéricas/fallback
+    # "Quantos anos tem a organização?",
+    # "Onde fica a sede da FURIA?",
+    # "Quem é o CEO da FURIA?",
 
-    # Combinações contextuais de jogos
-    "Quando é o próximo jogo da FURIA?",
-    "Que horas começa o jogo de hoje?",
-    "Onde posso assistir ao jogo da FURIA?",
-    "Contra quem a FURIA vai jogar?",
-    "Qual a data do próximo match?",
+    # # Mensagens contextuais de jogos
+    # "Quando é o próximo jogo da FURIA?",
+    # "Onde posso assistir ao jogo da FURIA?",
+    # "Contra quem a FURIA vai jogar?",
+    # "Qual a data do próximo match?",
 
-    # Combinações contextuais de torneios
-    "Qual o próximo torneio da FURIA?",
-    "Quando vai ser o próximo Major de CS2?",
-    "A FURIA está classificada para quais eventos?",
-    "Para quais campeonatos a FURIA vai?",
+    # # Mensagens com combinações contextuais de torneios
+    # "Quando vai ser o próximo Major de CS2?",
+    # "Para quais campeonatos a FURIA vai?",
 
-    # Combinações contextuais de jogadores
-    "Como está o Fallen jogando?",
-    "Quais são os jogadores do time principal?",
+    # # Mensagens com combinações contextuais de jogadores
+    # "Como está o Fallen jogando?",
+    # "Quais são os jogadores do time principal?",
 
-    # Combinações contextuais de história
-    "Quantos títulos a FURIA já ganhou?",
-    "Qual foi a maior conquista da FURIA?",
-    "Desde quando a FURIA existe?",
+    # # Mensagens com combinações contextuais de história
+    # "Quantos títulos a FURIA já ganhou?",
+    # "Qual foi a maior conquista da FURIA?",
+    # "Desde quando a FURIA existe?",
 
-    # Combinações contextuais de notícias
-    "Tem novidades no time?",
-    "Mudou algo no elenco?",
-    "Vai ter mudança no time?",
-
-    # Perguntas com palavras-chave individuais
-    "Me fale sobre os jogos da FURIA",
-    "Como está o time principal?",
-    "Quais os próximos torneios?",
-    "Me conta sobre o cenário atual",
-    "Quais foram os últimos resultados?",
-    "Me fale um pouco do histórico",
-    "Alguma curiosidade sobre a FURIA?",
-    "Como está o yuurih jogando?",
-
-    # Perguntas mistas/complexas
-    "Quando a FURIA joga no próximo campeonato?",
-    "O Fallen vai jogar no próximo torneio?",
-    "Quais são as estatísticas do time no atual campeonato?"
+    # # Mensagens com palavras-chave individuais
+    # "Me conta sobre o cenário atual",
+    # "Quais foram os últimos resultados?",
+    # "Me fale um pouco do histórico",
+    # "Alguma curiosidade sobre a FURIA?",
+    # "Como o yuurih está jogando?"
 ]
 
 # Habilita ou desabilita os logs no terminal (opcional)
 enable_debug()
 
 # Testando cada pergunta
-print("[PERGUNTAS E RESPOSTAS]\n")
-for question in test_questions:
-    response = handle_input(question)
+print("[ENTRADAS E SAÍDAS]\n")
+for message in test_questions:
+    response = handle_input(message)
     print("-" * 40)
-    print(f"Usuário: {question}")
+    print(f"Usuário: {message}")
     print(f"FURIOSO: {response}")
     print("-" * 40 + "\n")
 
