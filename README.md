@@ -62,7 +62,7 @@ Caso o scraping falhe em extrair os dados, o sistema de fallback é executado.
 
 ## Fallback 🤖
 
-Quando o chatbot não encontra os dados solicitados na HLTV.org, ele utiliza respostas de fallback para manter a interação leve e informativa. Há três tipos de fallback:
+Quando o chatbot não encontra os dados solicitados na HLTV.org, ele utiliza respostas de fallback para manter a interação leve e informativa. Existem três tipos de fallback:
 
 1. **Respostas para perguntas sobre a FURIA ou CS onde o scraping não obteve dados**:
    O  chatbot retorna respostas contextualizadas que buscam fornecer direcionamento para informação oficial.
