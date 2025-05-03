@@ -6,6 +6,7 @@ import re
 # Carrega imagem da FURIA e do usuário
 avatar_url_assistant = "https://upload.wikimedia.org/wikipedia/pt/f/f9/Furia_Esports_logo.png"
 avatar_url_user = "https://conpedi.org.br/wp-content/uploads/2023/11/user-branco.png"
+background_pattern = "https://cdn.dribbble.com/users/123162/screenshots/2676465/attachments/538970/gaming-pattern.png"
 
 # Edita links para se tornarem clicáveis
 def linkify(text):
@@ -37,36 +38,50 @@ def show_avatar_message(message, avatar_url, align="left", bg="#1B1035", text_co
 
 # Customização do tema do chatbot
 st.markdown(
-    """
+    f"""
     <style>
-
-    .stApp {
-        background-color: #100520;
-    }
+    [data-testid="stAppViewContainer"] {{
+        background-image: url("{background_pattern}");
+        background-size: 28rem;
+        background-attachment: fixed;
+        background-repeat: repeat;
+        background-position: center;
+    }}
     
-    .furioso-box {
+    [data-testid="stHeader"] {{
+        box-shadow: 0 2rem 2rem 0 #100520;
+    }}
+    
+    [data-testid="stBottom"] {{
+        box-shadow: 0 -2rem 2rem 0 #100520;
+    }}
+    
+    .stApp {{
+        background-color: transparent;
+    }}
+    
+    .furioso-box {{
         background-color: #211939;
-        border-left: 5px solid #d29f3d;
-        padding: 20px;
-        border-radius: 12px;
-        margin-bottom: 20px;
-    }
+        border-left: 0.3125rem solid #d29f3d;
+        padding: 1.25rem;
+        border-radius: 0.75rem;
+        margin-bottom: 1.25rem;
+    }}
 
-    .furioso-title {
-        font-size: 32px;
+    .furioso-title {{
+        font-size: 2rem;
         font-weight: bold;
         color: #f5f5f5;
-        animation: pulse 1.5s infinite;
-    }
+    }}
     
-    .highlight-name {
+    .highlight-name {{
         color: #d29f3d
-    }
+    }}
 
-    .furioso-subtitle {
-        font-size: 18px;
+    .furioso-subtitle {{
+        font-size: 1.125rem;
         color: #f5f5f5;
-    }
+    }}
     </style>
     """, unsafe_allow_html=True
 )
