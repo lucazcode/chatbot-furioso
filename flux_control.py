@@ -26,6 +26,7 @@ keywords = {
         "fixtures",
         "round",
         "data",
+        "dia",
         "fase",
         "oponente"
     ],
@@ -176,7 +177,7 @@ keywords = {
 keywords_scraping = [
     "jogadores", "quais jogadores","player", "players", "treinador", "coach", "tecnico", "equipe",
     "time", "elenco", "campeonato", "campeonatos", "torneio", "torneios", "evento", "eventos", "proximo jogo",
-    "quando jogam", "data","data do proximo jogo", "proxima partida", "formato",
+    "quando jogam", "data", "data do proximo jogo", "dia", "proxima partida", "formato",
     "tipo de partida", "formato do jogo", "etapa", "fase", "stages", "fase do jogo", "adversario", "oponente", "ultimo jogo",
     "ultimas partidas", "ultimos resultados", "ultimos jogos", "ultimos jogos da furia", "quando foi a ultima partida",
     "qual foi o último jogo", "ultimos resultados da furia", "ultimo game", "contra",
