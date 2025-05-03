@@ -83,7 +83,7 @@ def handle_scraping_request(user_text):
             responses["raw_data"]["opponent"] = opponent
             found_valid_data = True
 
-    # Caso o usuário pergunte sobre o próximo jogo
+    # Caso o usuário pergunte sobre a próxima partida
     elif has_keyword(user_text, keywords_next_match):
         match_data = extract_next_match_date_time(team_url)
         match_opponent = extract_next_match_opponent(team_url)

@@ -18,40 +18,40 @@ test_questions = [
     "Quem vai ser o adversário da FURIA?",
     "Quais foram os últimos resultados da FURIA?"
 
-    # # Mensagens genéricas/fallback
-    # "Quantos anos tem a organização?",
-    # "Onde fica a sede da FURIA?",
-    # "Quem é o CEO da FURIA?",
+    # Mensagens genéricas/fallback
+    "Quantos anos tem a organização?",
+    "Onde fica a sede da FURIA?",
+    "Quem é o CEO da FURIA?",
 
-    # # Mensagens contextuais de jogos
-    # "Quando é o próximo jogo da FURIA?",
-    # "Onde posso assistir ao jogo da FURIA?",
-    # "Contra quem a FURIA vai jogar?",
-    # "Qual a data do próximo match?",
+    # Mensagens contextuais de jogos
+    "Quando é o próximo jogo da FURIA?",
+    "Onde posso assistir ao jogo da FURIA?",
+    "Contra quem a FURIA vai jogar?",
+    "Qual a data do próximo match?",
 
-    # # Mensagens com combinações contextuais de torneios
-    # "Quando vai ser o próximo Major de CS2?",
-    # "Para quais campeonatos a FURIA vai?",
+    # Mensagens com combinações contextuais de torneios
+    "Quando vai ser o próximo Major de CS2?",
+    "Para quais campeonatos a FURIA vai?",
 
-    # # Mensagens com combinações contextuais de jogadores
-    # "Como está o Fallen jogando?",
-    # "Quais são os jogadores do time principal?",
+    # Mensagens com combinações contextuais de jogadores
+    "Como está o Fallen jogando?",
+    "Quais são os jogadores do time principal?",
 
-    # # Mensagens com combinações contextuais de história
-    # "Quantos títulos a FURIA já ganhou?",
-    # "Qual foi a maior conquista da FURIA?",
-    # "Desde quando a FURIA existe?",
+    # Mensagens com combinações contextuais de história
+    "Quantos títulos a FURIA já ganhou?",
+    "Qual foi a maior conquista da FURIA?",
+    "Desde quando a FURIA existe?",
 
-    # # Mensagens com palavras-chave individuais
-    # "Me conta sobre o cenário atual",
-    # "Quais foram os últimos resultados?",
-    # "Me fale um pouco do histórico",
-    # "Alguma curiosidade sobre a FURIA?",
-    # "Como o yuurih está jogando?"
+    # Mensagens com palavras-chave individuais
+    "Me conta sobre o cenário atual",
+    "Quais foram os últimos resultados?",
+    "Me fale um pouco do histórico",
+    "Alguma curiosidade sobre a FURIA?",
+    "Como o yuurih está jogando?"
 ]
 
 # Habilita ou desabilita os logs no terminal (opcional)
-enable_debug()
+# enable_debug()
 
 # Testando cada pergunta
 print("[ENTRADAS E SAÍDAS]\n")
