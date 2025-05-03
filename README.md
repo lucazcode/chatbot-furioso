@@ -7,7 +7,7 @@ Um chatbot focado no time de CS da FURIA, capaz de classificar entradas de usuá
 ## 📋 Sumário
 
 * [Visão Geral](#visão-geral) ✨
-* [Deploy](#deploy) 🚀
+* [Aplicativo](#teste) 🚀
 * [Scraping de dados](#scraping-de-dados) 📝
 * [Fallback](#fallback) 🤖
 * [Arquitetura](#arquitetura) 🏗️
@@ -35,7 +35,7 @@ O **FURIOSO Chatbot** é uma aplicação Python que:
 
 ---
 
-## Deploy 🚀
+## Aplicativo 🚀
 
 O projeto está disponível online via Streamlit:
 
