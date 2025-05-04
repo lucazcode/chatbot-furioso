@@ -92,8 +92,9 @@ st.markdown(
 )
 
 # Adiciona efeito de digitação na resposta do chatbot
-def simulate_typing(message, avatar_url, align="left", bg="#211939", text_color="#f5f5f5", delay=0.005):
-    placeholder = st.empty()
+def simulate_typing(message, avatar_url, align="left", bg="#211939", text_color="#f5f5f5", delay=0.005, placeholder=None):
+    if placeholder is None:
+        placeholder = st.empty()
     typed_text = ""
     for char in message:
         typed_text += char
@@ -135,12 +136,16 @@ def streamlit_interface():
                     st.markdown(show_avatar_message(message["text"], avatar_url_assistant, align="left", bg="#211939",
                                                     text_color="#f5f5f5"), unsafe_allow_html=True)
 
+            # Indica pro usuário que a mensagem está sendo processada
+            thinking_placeholder = st.empty()
+            simulate_typing("Pensando...", avatar_url_assistant, align="left", bg="#211939", text_color="#f5f5f5", placeholder=thinking_placeholder)
+
             # Adiciona na lista mensagens o texto do assistente
             assistant_message = handle_input(user_message)
             messages.append({"entity": "assistant", "text": assistant_message})
 
-            # Re-renderiza a mensagem do assistente
-            simulate_typing(assistant_message, avatar_url_assistant, align="left", bg="#211939", text_color="#f5f5f5")
+            # Troca a mensagem de processamento pela mensagem do assistente
+            simulate_typing(assistant_message, avatar_url_assistant, align="left", bg="#211939", text_color="#f5f5f5", placeholder=thinking_placeholder)
         else:
             st.session_state["messages"] = []
 
