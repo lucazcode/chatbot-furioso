@@ -82,6 +82,10 @@ st.markdown(
         font-size: 1.125rem;
         color: #f5f5f5;
     }}
+    
+    .st-emotion-cache-6shykm {{
+            padding-bottom: 15rem;
+        }}
     </style>
     """, unsafe_allow_html=True
 )
