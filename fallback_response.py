@@ -150,7 +150,7 @@ contextual_responses = {
     'jogos': {
         ("quando", "proximo", "jogo"): "O próximo jogo da FURIA será em breve! A torcida já está ansiosa para mais uma vitória!",
         ("horario", "jogo", "hoje"): "O jogo de hoje da FURIA vai ser incrível! Fique ligado no horário!",
-        ("onde", "assistir", "jogo"): "Você pode assistir aos jogos da FURIA nos melhores canais de esportes eletrônicos!",
+        ("onde", "assistir"): "Você pode assistir aos jogos da FURIA nos melhores canais de esportes eletrônicos!",
         ("contra", "quem", "jogam"): "A FURIA está preparada para enfrentar os melhores times do mundo!",
         ("data", "proximo", "match"): "O próximo match da FURIA está marcado e promete ser eletrizante!",
     },
