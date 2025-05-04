@@ -53,7 +53,7 @@ st.markdown(
     }}
     
     [data-testid="stBottom"] {{
-        box-shadow: 0 -2rem 2rem 0 #100520;
+        box-shadow: 0 -1.5rem 2rem 0 #100520;
     }}
     
     .stApp {{
@@ -84,7 +84,7 @@ st.markdown(
     }}
     
     .st-emotion-cache-6shykm {{
-            padding-bottom: 15rem;
+            padding-bottom: 9.5rem;
         }}
     </style>
     """, unsafe_allow_html=True
