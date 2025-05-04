@@ -113,7 +113,7 @@ def handle_scraping_request(user_text):
             names = '\n'.join(player_info)
 
             # Adiciona a resposta
-            messages.append(f"Atualmente, os jogadores da FURIA são:\n{names}.")
+            messages.append(f"Atualmente, os jogadores de CS da FURIA são:\n{names}.")
 
             # Salva os dados
             responses["raw_data"]["players"] = players
@@ -127,7 +127,7 @@ def handle_scraping_request(user_text):
 
         if coach and coach_link:
             # Monta a mensagem com o nome do treinador e o link
-            messages.append(f"Atualmente, o treinador da FURIA é {coach} [{coach_link}].")
+            messages.append(f"Atualmente, o treinador de CS da FURIA é {coach} [{coach_link}].")
 
             # Salva os dados
             responses["raw_data"]["coach"] = coach
@@ -144,7 +144,7 @@ def handle_scraping_request(user_text):
 
         if team:
             # Resposta sobre o time
-            messages.append(f"A equipe da FURIA compete atualmente com o elenco principal no cenário de CS2.\n")
+            messages.append(f"A equipe da FURIA compete atualmente com o elenco principal de CS.\n")
 
             # Variáveis para armazenar as informações dos jogadores e do coach
             player_info = ""

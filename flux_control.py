@@ -170,7 +170,9 @@ keywords = {
         "oie",
         "boa",
         "eai",
-        "fala"
+        "fala",
+        "obrigado",
+        "valeu"
     ]
 }
 

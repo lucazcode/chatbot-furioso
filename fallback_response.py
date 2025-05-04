@@ -139,7 +139,9 @@ keywords_responses = {
         "oie": "Oie! Que bom te ver por aqui!",
         "boa": "Boa! tudo certo hoje? o que manda?",
         "eai": "Eaí mano! o que manda hoje?",
-        "fala": "Fala tu, tudo tranquilo?"
+        "fala": "Fala tu, tudo tranquilo?",
+        "obrigado": "Obrigado você por torcer pela FURIA! Pra cima!",
+        "valeu": "Por nada! Sempre que precisar é só mandar a boa."
     }
 }
 
@@ -210,7 +212,9 @@ contextual_responses = {
         ("teu", "nome"): "Opa! tranquilo? meu nome é FURIOSO e estou aqui pra te auxiliar a ficar ligadão nas notícias da FURIA e do CS! Do que precisa?",
         ("quem", "e", "voce"): "Opa! tranquilo? meu nome é FURIOSO e estou aqui pra te auxiliar a ficar ligadão nas notícias da FURIA e do CS! Do que precisa?",
         ("quem", "e", "vc"): "Opa! tranquilo? meu nome é FURIOSO e estou aqui pra te auxiliar a ficar ligadão nas notícias da FURIA e do CS! Do que precisa?",
-        ("quem", "e", "tu"): "Opa! tranquilo? meu nome é FURIOSO e estou aqui pra te auxiliar a ficar ligadão nas notícias da FURIA e do CS! Do que precisa?"
+        ("quem", "e", "tu"): "Opa! tranquilo? meu nome é FURIOSO e estou aqui pra te auxiliar a ficar ligadão nas notícias da FURIA e do CS! Do que precisa?",
+        ("obrigado", "furioso"): "Obrigado você por estar com a FURIA! Pra cima!",
+        ("valeu", "furioso"): "Eu que agradeço pela torcida! A FURIA tá no sangue!"
     }
 }
 
