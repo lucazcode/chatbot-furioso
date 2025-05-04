@@ -154,8 +154,6 @@ keywords = {
         "furioso",
         "nome",
         "voce",
-        "vc",
-        "tu",
         "seu",
         "ola",
         "saudacoes",
@@ -321,6 +319,11 @@ def handle_input(user_text):
     user_text = normalize_text(user_text)
     log_to_buffer(f"Texto de entrada normalizado: {user_text}")
 
+    # Resposta rápida para saudações
+    if has_keyword(user_text, {'saudacoes': keywords['saudacoes']}):
+        log_to_buffer("Saudação detectada. Retornando resposta imediata.")
+        return fallback_message_format(get_fallback_message(user_text))
+
     if '?' in user_text:
         input_type = "question"
     else:
@@ -333,6 +336,11 @@ def handle_input(user_text):
         return "Desculpe, não consegui entender o contexto da sua mensagem. Poderia reformular sua pergunta? ☺️"
 
     log_to_buffer(f"Nova interação iniciada com input: {user_text}")
+
+    # Resposta rápida se não for uma pergunta ou não tiver palavras-chave de scraping
+    if input_type != "question" or not has_keyword_list(user_text, keywords_scraping):
+        log_to_buffer("Input não relacionado a scraping. Resposta direta via fallback.")
+        return fallback_message_format(get_fallback_message(user_text))
 
     response = control_flow(user_text, input_type)
 
