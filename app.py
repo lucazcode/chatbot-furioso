@@ -118,12 +118,12 @@ def streamlit_interface():
     messages = st.session_state["messages"]
 
     # Armazena a mensagens do usuário
-    user_message = st.chat_input("Insira sua mensagem ou 'cls' para limpar o chat")
+    user_message = st.chat_input("Insira sua mensagem ou 'limpar' para limpar o chat")
 
     # Inicializa ou recupera a lista de mensagens do usuário
     if user_message:
         # Limpa a lista
-        if user_message.lower() != "cls":
+        if user_message.lower() != "limpar":
             # Adiciona na lista mensagens o texto do usuário
             messages.append({"entity": "user", "text": user_message})
 
