@@ -42,18 +42,19 @@ st.markdown(
     <style>
     [data-testid="stAppViewContainer"] {{
         background-image: url("{background_pattern}");
-        background-size: 28rem;
+        background-size: 27.7rem;
         background-attachment: fixed;
         background-repeat: repeat;
         background-position: center;
     }}
     
     [data-testid="stHeader"] {{
-        box-shadow: 0 2rem 2rem 0 #100520;
+        box-shadow: 0 1.7rem .8rem 0 #100520;
     }}
     
     [data-testid="stBottom"] {{
-        box-shadow: 0 -1.5rem 2rem 0 #100520;
+        margin-top: 1.5rem;
+        box-shadow: 0 -1.2rem 1.5rem 0 #100520;
     }}
     
     .stApp {{
