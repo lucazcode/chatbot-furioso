@@ -54,7 +54,7 @@ st.markdown(
     
     [data-testid="stBottom"] {{
         margin-top: 1.5rem;
-        box-shadow: 0 -1.2rem 1.5rem 0 #100520;
+        box-shadow: 0 -1.3rem 1rem 0 #100520;
     }}
     
     .stApp {{
